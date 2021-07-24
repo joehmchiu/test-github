@@ -3,7 +3,7 @@
   any_errors_fatal: true
   vars:
     branch: uat
-    repo: jenkins-cicd-mongo-api.git
+    repo: test-github
   tasks:
     - name: Set origin to include username and password.
       shell: "git remote set-url origin https://{{ username }}:{{ password }}@github.com/{{ username }}/{{ repo }}"
@@ -29,6 +29,6 @@
         git checkout {{ branch }}
         # echo "{{ note }}" >> release-note
         git tag -a {{ tag }} -m "release OK"
-        # git commit --amend -m "{{ note }}"
-        # git push origin {{ branch }} --follow-tags -f
+        git commit -m "{{ note }}"
+        git push origin {{ branch }} --follow-tags -f
         echo "Release Note Pushed: UAT release OK - tagged with {{ out.stdout }}"
