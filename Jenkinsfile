@@ -24,7 +24,7 @@ pipeline {
           sudo rm -f ./group_vars/all/vault
           echo "10. Release tagged!"
         '''
-        sh "cp /tmp/*.xml '$WORKSPACE'/reports/."
+        sh "cp -f /tmp/*.xml '$WORKSPACE'/reports/."
       }
     }
   }
