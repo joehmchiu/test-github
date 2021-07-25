@@ -24,12 +24,13 @@ pipeline {
           sudo rm -f ./group_vars/all/vault
           echo "10. Release tagged!"
         '''
+        sh "cp /tmp/*.xml $WORKSPACE/reports"
       }
     }
   }
   post {
     always {
-      junit '/tmp/*.xml'
+      junit allowEmptyResults: true, testResults: '**/reports/*.xml'
     }
   }
 }
